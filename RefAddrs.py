@@ -11,6 +11,11 @@ def writeIPS():
     with open("ip_table.json", "w") as file:
         json.dump(ips, file)
 
+def writeToCSV():
+    with open("ip_table.csv", "w") as file:
+        export = csv.writer(file, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+
+
 def addIP():
     print("Input the MAC Address:")
     newMAC = input()
@@ -44,9 +49,9 @@ def addIP():
 def PrintDevices():
     count = 1
     for i in ips:
-        print("MAC for device number " + str(count) + ": " + i['MAC'])
-        print("IP for device number " + str(count) + ": " + i['IP'])
-        print("Description for device number " + str(count) + ": " + i['Desc'])
+        print(f"MAC Address for device number {str(count)}: {i['Desc']}")
+        print(f"IP for device number " + str(count) + ": " + i['IP'])
+        print(f"Description for device number {str(count)}: {i['Desc']}")
         count += 1
 
 def RemoveDevice():
@@ -88,9 +93,6 @@ def main(args):
         choice = int(input())
     except ValueError:
         choice = -1
-    
-    print(choice)
-    print(type(choice))
 
     if choice == 0:
         return False
@@ -106,7 +108,8 @@ def main(args):
         PrintDevices()
     elif choice == 6:
         if beta:
-            print("Error: Saving to CSVs have not been implemented yet, even in a beta form.")
+            print("This option is in beta. Please keep this in mind when using this option.")
+            writeToCSV()
         else:
             print(f"This option is accessible with the beta flag (try {args[0]} --beta")
     elif choice == 7:
