@@ -49,8 +49,8 @@ def addIP():
 def PrintDevices():
     count = 1
     for i in ips:
-        print(f"MAC Address for device number {str(count)}: {i['Desc']}")
-        print(f"IP for device number " + str(count) + ": " + i['IP'])
+        print(f"MAC Address for device number {str(count)}: {i['MAC']}")
+        print(f"IP Address for device number {str(count)}: {i['IP']}")
         print(f"Description for device number {str(count)}: {i['Desc']}")
         count += 1
 
